@@ -92,8 +92,21 @@ dependencies {
     def coilVersion = "0.8.0"
     implementation "io.coil-kt:coil:$coilVersion"
 
-    //core
-    implementation project(':core')
+
+    //koin
+    def koinVersion = "2.0.1"
+    implementation "org.koin:koin-core:$koinVersion"
+    //안드로이드 context 주입, 안드로이드 log 지원 기능을 제공
+    implementation "org.koin:koin-android:$koinVersion"
+    // or ViewModel for AndroidX
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+
+    //coroutine
+    def coroutineVersion = "1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

@@ -1,2 +1,2 @@
-include ':app', ':core'
+include ':app', ':domain', ':data'
 rootProject.name='MyArchitecture'
