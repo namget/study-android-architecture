@@ -12,8 +12,7 @@ import com.namget.myarchitecture.ui.base.BaseViewModel
  * Created by Namget on 2019.12.01.
  */
 class MainViewModel(
-    private val repoRepository: RepoRepository,
-    private val toastItemCallback: (Int) -> Unit
+    private val repoRepository: RepoRepository
 ) : BaseViewModel() {
     val list = ObservableArrayList<RepoItemEntity>()
 
@@ -25,7 +24,7 @@ class MainViewModel(
                 list.addAll(it)
                 isLoading.set(false)
             }, {
-                toastItemCallback(R.string.error)
+//                toastItemCallback(R.string.error)
                 e(TAG, "selectRepoData", it)
                 isLoading.set(false)
             })

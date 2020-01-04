@@ -4,9 +4,7 @@ import com.namget.myarchitecture.data.response.RepoInfoResponse
 import com.namget.myarchitecture.data.response.RepoListResponse
 import com.namget.myarchitecture.data.response.UserInfoResponse
 import com.namget.myarchitecture.data.source.RepoDataSource
-import com.namget.myarchitecture.data.source.local.RepoLocalDataSourceImpl
 import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
-import com.namget.myarchitecture.data.source.remote.RepoRemoteDataSourceImpl
 import com.namget.myarchitecture.ext.withScheduler
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -16,13 +14,10 @@ import io.reactivex.functions.BiFunction
 /**
  * Created by Namget on 2019.10.25.
  */
-object RepoRepositoryImpl : RepoRepository {
-    private val repoRemoteDataSource: RepoDataSource by lazy {
-        RepoRemoteDataSourceImpl
-    }
-    private val repoLocalDataSource: RepoDataSource by lazy {
-        RepoLocalDataSourceImpl
-    }
+class RepoRepositoryImpl(
+    private val repoRemoteDataSource: RepoDataSource,
+    private val repoLocalDataSource: RepoDataSource
+) : RepoRepository {
 
     override fun getRepositoryList(searchName: String): Single<RepoListResponse> =
         repoRemoteDataSource.getRepositoryList(searchName)

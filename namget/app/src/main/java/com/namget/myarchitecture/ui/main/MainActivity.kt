@@ -20,13 +20,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     private lateinit var recyclerView: RecyclerView
     private lateinit var mainAdapter: MainAdapter
     private val repoList: MutableList<RepoItemEntity> = arrayListOf()
-    override val viewModel: MainViewModel by lazy {
-        MainViewModel(repoRepository, toast)
-
-    }
-    override val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

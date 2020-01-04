@@ -12,14 +12,12 @@ import com.namget.myarchitecture.ui.base.BaseViewModel
  * Created by Namget on 2019.12.01.
  */
 class SearchViewModel(
-    private val repoRepository: RepoRepository,
-    private val toastItemCallback: (Int) -> Unit,
-    private val keyboardCallback: (Boolean) -> Unit
+    private val repoRepository: RepoRepository
 ) : BaseViewModel() {
     val list = ObservableArrayList<RepoListResponse.RepoItem?>()
 
     fun requestRepoList(query: String) {
-        keyboardCallback(false)
+//        keyboardCallback(false)
         isLoading.set(true)
         disposable += repoRepository.getRepositoryList(query)
             .subscribe({
@@ -27,7 +25,7 @@ class SearchViewModel(
                 list.addAll(it.items ?: listOf())
                 isLoading.set(false)
             }, {
-                toastItemCallback(R.string.error)
+//                toastItemCallback(R.string.error)
                 isLoading.set(false)
             })
     }

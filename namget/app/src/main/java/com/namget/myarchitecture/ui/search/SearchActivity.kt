@@ -35,12 +35,8 @@ class SearchActivity :
     RepoRepositoryInf {
     private lateinit var menuSearch: MenuItem
     private lateinit var searchView: SearchView
-    override val viewModel: SearchViewModel by lazy {
-        SearchViewModel(repoRepository, toast, keyBoard)
-    }
-    override val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
+
+
 
     private val diffUtilCallback =
         object : DiffUtil.ItemCallback<RepoListResponse.RepoItem>() {

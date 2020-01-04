@@ -13,8 +13,7 @@ import io.reactivex.Single
 /**
  * Created by Namget on 2019.10.24.
  */
-object RepoLocalDataSourceImpl : RepoDataSource {
-    private lateinit var appDatabase: AppDatabase
+class RepoLocalDataSource(private val appDatabase: AppDatabase) : RepoDataSource {
 
     override fun getRepositoryList(searchName: String): Single<RepoListResponse> {
         throw UnsupportedOperationException()
@@ -24,10 +23,6 @@ object RepoLocalDataSourceImpl : RepoDataSource {
     }
     override fun getRepoInfo(repoUrl: String): Single<RepoInfoResponse> {
         throw UnsupportedOperationException()
-    }
-
-    fun provideAppDatabase(context: Context) {
-        appDatabase = AppDatabase.getInstance(context)
     }
 
     override fun insertRepoData(repoItem: RepoItemEntity): Completable =

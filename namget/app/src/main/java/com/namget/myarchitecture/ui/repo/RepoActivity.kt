@@ -20,14 +20,6 @@ class RepoActivity : BaseActivity<ActivityRepoBinding, RepoViewModel>(R.layout.a
     private lateinit var userUrl: String
 
 
-    override val viewModel: RepoViewModel by lazy {
-        RepoViewModel(repoRepository, toast)
-    }
-
-    override val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()

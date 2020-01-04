@@ -12,8 +12,8 @@ import io.reactivex.Single
 /**
  * Created by Namget on 2019.10.24.
  */
-object RepoRemoteDataSourceImpl : RepoDataSource {
-    private val apiService: ApiService = RetrofitBuilder.repoApi
+class RepoRemoteDataSource(private val apiService: ApiService) : RepoDataSource {
+
 
     override fun insertRepoData(repoItem: RepoItemEntity): Completable {
         throw UnsupportedOperationException()
