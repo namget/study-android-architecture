@@ -21,9 +21,6 @@ object RetrofitBuilder {
     //10 sec
     private const val TIMEOUT = 10L
     private const val BASE_URL = "https://api.github.com/"
-    val repoApi : ApiService by lazy {
-        createApiService()
-    }
 
     private fun createHeaderInterceptor(): Interceptor =
         Interceptor {
@@ -67,7 +64,7 @@ object RetrofitBuilder {
             .baseUrl(baseUrl)
             .build()
 
-    private fun createApiService(): ApiService =
+    fun createApiService(): ApiService =
         createRetrofit().create(ApiService::class.java)
 
 

@@ -14,11 +14,11 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("search/repositories")
-    fun getRepositoryList(@Query("q") searchName: String): Single<RepoListResponse>
+    suspend fun getRepositoryList(@Query("q") searchName: String): RepoListResponse
 
     @GET("users/{id}")
-    fun getUserInfo(@Path("id") userUrl: String): Single<UserInfoResponse>
+    suspend fun getUserInfo(@Path("id") userUrl: String): UserInfoResponse
 
     @GET("repos/{repoUrl}")
-    fun getRepoInfo(@Path("repoUrl", encoded = true) repoUrl: String): Single<RepoInfoResponse>
+    suspend fun getRepoInfo(@Path("repoUrl", encoded = true) repoUrl: String): RepoInfoResponse
 }

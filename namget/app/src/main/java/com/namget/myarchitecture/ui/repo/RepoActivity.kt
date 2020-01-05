@@ -2,20 +2,21 @@ package com.namget.myarchitecture.ui.repo
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import com.namget.myarchitecture.R
-import com.namget.myarchitecture.data.repository.RepoRepository
-import com.namget.myarchitecture.data.repository.RepoRepositoryImpl
 import com.namget.myarchitecture.databinding.ActivityRepoBinding
+import com.namget.myarchitecture.ext.obtainViewModeFactory
 import com.namget.myarchitecture.ui.base.BaseActivity
-import com.namget.myarchitecture.ui.base.RepoRepositoryInf
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
+import com.namget.myarchitecture.util.ViewModelFactory
 
 /**
  * Created by Namget on 2019.10.22.
  */
-class RepoActivity : BaseActivity<ActivityRepoBinding, RepoViewModel>(R.layout.activity_repo),
-    RepoRepositoryInf {
+class RepoActivity : BaseActivity<ActivityRepoBinding>(R.layout.activity_repo) {
+
+    private val viewModel by viewModels<RepoViewModel> { obtainViewModeFactory() }
     private lateinit var repoUrl: String
     private lateinit var userUrl: String
 

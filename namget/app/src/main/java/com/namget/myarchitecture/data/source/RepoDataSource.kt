@@ -9,9 +9,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface RepoDataSource {
-    fun insertRepoData(repoItem : RepoItemEntity) : Completable
-    fun selectRepoData() : Observable<List<RepoItemEntity>>
-    fun getRepositoryList(searchName: String): Single<RepoListResponse>
-    fun getUserInfo(id: String): Single<UserInfoResponse>
-    fun getRepoInfo(repoUrl: String): Single<RepoInfoResponse>
+    suspend fun insertRepoData(repoItem : RepoItemEntity)
+    suspend fun selectRepoData() : Result<List<RepoItemEntity>>
+    suspend fun getRepositoryList(searchName: String): Result<RepoListResponse>
+    suspend fun getUserInfo(id: String): Result<UserInfoResponse>
+    suspend fun getRepoInfo(repoUrl: String): Result<RepoInfoResponse>
 }

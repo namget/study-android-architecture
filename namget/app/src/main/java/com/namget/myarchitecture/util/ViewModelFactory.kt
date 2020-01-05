@@ -5,6 +5,10 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.namget.myarchitecture.data.repository.RepoRepository
+import com.namget.myarchitecture.domain.InsertRepoDataUseCase
+import com.namget.myarchitecture.domain.ReqRepoListUseCase
+import com.namget.myarchitecture.domain.ReqUserDataUseCase
+import com.namget.myarchitecture.domain.SelectRepoDataUseCase
 import com.namget.myarchitecture.ui.main.MainViewModel
 import com.namget.myarchitecture.ui.repo.RepoViewModel
 import com.namget.myarchitecture.ui.search.SearchViewModel
@@ -20,28 +24,17 @@ class ViewModelFactory(private val repoRepository: RepoRepository) :
         with(modelClass) {
             when {
                 isAssignableFrom(MainViewModel::class.java) ->
-                    MainViewModel(repoRepository)
+                    MainViewModel(SelectRepoDataUseCase(repoRepository))
                 isAssignableFrom(RepoViewModel::class.java) ->
-                    RepoViewModel(repoRepository)
+                    RepoViewModel(ReqUserDataUseCase(repoRepository))
                 isAssignableFrom(SearchViewModel::class.java) ->
-                    SearchViewModel(repoRepository)
+                    SearchViewModel(
+                        ReqRepoListUseCase(repoRepository),
+                        InsertRepoDataUseCase(repoRepository)
+                    )
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T
-
-    companion object {
-
-        @SuppressLint("StaticFieldLeak")
-        @Volatile private var INSTANCE: ViewModelFactory? = null
-
-        fun getInstance(application: Application) =
-            INSTANCE ?: synchronized(ViewModelFactory::class.java) {
-                INSTANCE ?: ViewModelFactory(
-                    Injection.provideRepoRepository(application.applicationContext))
-                    .also { INSTANCE = it }
-            }
-
-    }
 
 }

@@ -4,6 +4,7 @@ import com.namget.myarchitecture.data.response.RepoInfoResponse
 import com.namget.myarchitecture.data.response.RepoListResponse
 import com.namget.myarchitecture.data.response.UserInfoResponse
 import com.namget.myarchitecture.data.source.RepoDataSource
+import com.namget.myarchitecture.data.source.Result
 import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
 import com.namget.myarchitecture.ext.withScheduler
 import io.reactivex.Completable
@@ -19,27 +20,23 @@ class RepoRepositoryImpl(
     private val repoLocalDataSource: RepoDataSource
 ) : RepoRepository {
 
-    override fun getRepositoryList(searchName: String): Single<RepoListResponse> =
+    override suspend fun getRepositoryList(searchName: String): Result<RepoListResponse> =
         repoRemoteDataSource.getRepositoryList(searchName)
-            .withScheduler()
 
-    override fun getProfileInfo(
+    override suspend fun getProfileInfo(
         userUrl: String,
         repoUrl: String
-    ): Single<Pair<UserInfoResponse, RepoInfoResponse>> =
-        Single.zip(
-            repoRemoteDataSource.getUserInfo(userUrl),
-            repoRemoteDataSource.getRepoInfo(repoUrl),
-            BiFunction<UserInfoResponse, RepoInfoResponse, Pair<UserInfoResponse, RepoInfoResponse>> { user, repo ->
-                Pair(user, repo)
-            }).withScheduler()
+    ): Result<Pair<UserInfoResponse, RepoInfoResponse>> {
+        repoRemoteDataSource.getUserInfo(userUrl)
+        repoRemoteDataSource.getRepoInfo(repoUrl)
+        Pair(user, repo)
 
 
-    override fun insertRepoData(repoItem: RepoItemEntity): Completable =
+    }
+
+    override suspend fun insertRepoData(repoItem: RepoItemEntity) =
         repoLocalDataSource.insertRepoData(repoItem)
-            .withScheduler()
 
-    override fun selectRepoData(): Observable<List<RepoItemEntity>> =
+    override suspend fun selectRepoData(): Result<List<RepoItemEntity>> =
         repoLocalDataSource.selectRepoData()
-            .withScheduler()
 }

@@ -11,7 +11,7 @@ import io.reactivex.Completable
  */
 interface BaseDao<T> {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(obj: T): Completable
+    fun insert(obj: T)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertList(vararg obj: T): Completable

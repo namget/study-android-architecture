@@ -11,6 +11,6 @@ import io.reactivex.Observable
 @Dao
 interface RepoDao : BaseDao<RepoItemEntity> {
     @Query("SELECT * from RepoItem")
-    fun selectRepoList(): Observable<List<RepoItemEntity>>
+    suspend fun selectRepoList(): List<RepoItemEntity>
 
 }

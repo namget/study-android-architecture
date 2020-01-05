@@ -4,6 +4,9 @@ import androidx.databinding.ObservableArrayList
 import com.namget.myarchitecture.R
 import com.namget.myarchitecture.data.repository.RepoRepository
 import com.namget.myarchitecture.data.response.RepoListResponse
+import com.namget.myarchitecture.domain.InsertRepoDataUseCase
+import com.namget.myarchitecture.domain.ReqRepoListUseCase
+import com.namget.myarchitecture.domain.ReqUserDataUseCase
 import com.namget.myarchitecture.ext.e
 import com.namget.myarchitecture.ext.plusAssign
 import com.namget.myarchitecture.ui.base.BaseViewModel
@@ -12,7 +15,8 @@ import com.namget.myarchitecture.ui.base.BaseViewModel
  * Created by Namget on 2019.12.01.
  */
 class SearchViewModel(
-    private val repoRepository: RepoRepository
+    private val reqRepoListUseCase: ReqRepoListUseCase,
+    private val insertRepoDataUseCase: InsertRepoDataUseCase
 ) : BaseViewModel() {
     val list = ObservableArrayList<RepoListResponse.RepoItem?>()
 
@@ -25,7 +29,7 @@ class SearchViewModel(
                 list.addAll(it.items ?: listOf())
                 isLoading.set(false)
             }, {
-//                toastItemCallback(R.string.error)
+                //                toastItemCallback(R.string.error)
                 isLoading.set(false)
             })
     }
