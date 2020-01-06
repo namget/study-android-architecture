@@ -19,11 +19,11 @@ package com.namget.myarchitecture.data.source
 /**
  * Created by Namget on 2020.01.05.
  */
-sealed class Result<out R> {
+sealed class MyResult<out R> {
 
-    data class Success<out T>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
-    object Loading : Result<Nothing>()
+    data class Success<out T>(val data: T) : MyResult<T>()
+    data class Error(val exception: Exception) : MyResult<Nothing>()
+    object Loading : MyResult<Nothing>()
 
     override fun toString(): String {
         return when (this) {
@@ -35,7 +35,7 @@ sealed class Result<out R> {
 }
 
 /**
- * `true` if [Result] is of type [Success] & holds non-null [Success.data].
+ * `true` if [MyResult] is of type [Success] & holds non-null [Success.data].
  */
-val Result<*>.succeeded
-    get() = this is Result.Success && data != null
+val MyResult<*>.succeeded
+    get() = this is MyResult.Success && data != null

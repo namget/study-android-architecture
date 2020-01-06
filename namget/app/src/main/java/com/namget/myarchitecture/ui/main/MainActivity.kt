@@ -12,7 +12,6 @@ import com.namget.myarchitecture.databinding.ActivityMainBinding
 import com.namget.myarchitecture.ext.obtainViewModeFactory
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.ui.search.SearchActivity
-import com.namget.myarchitecture.util.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -30,7 +29,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun init() {
         initEvent()
         initRecyclerView()
-        viewModel.selectRepoData()
     }
 
     private fun initRecyclerView() {

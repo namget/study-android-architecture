@@ -1,18 +1,15 @@
 package com.namget.myarchitecture.data.source.remote
 
+import androidx.lifecycle.LiveData
 import com.namget.myarchitecture.data.response.RepoInfoResponse
 import com.namget.myarchitecture.data.response.RepoListResponse
 import com.namget.myarchitecture.data.response.UserInfoResponse
+import com.namget.myarchitecture.data.source.MyResult
 import com.namget.myarchitecture.data.source.RepoDataSource
-import com.namget.myarchitecture.data.source.Result
 import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
-import io.reactivex.Completable
-import io.reactivex.Observable
-import io.reactivex.Single
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 /**
  * Created by Namget on 2019.10.24.
@@ -27,35 +24,35 @@ class RepoRemoteDataSource(
         throw UnsupportedOperationException()
     }
 
-    override suspend fun selectRepoData(): Result<List<RepoItemEntity>> {
+    override suspend fun selectRepoData(): LiveData<MyResult<List<RepoItemEntity>>> {
         throw UnsupportedOperationException()
     }
 
-    override suspend fun getRepositoryList(searchName: String): Result<RepoListResponse> =
+    override suspend fun getRepositoryList(searchName: String): MyResult<RepoListResponse> =
         withContext(ioDispatcher) {
             return@withContext try {
-                Result.Success(apiService.getRepositoryList(searchName))
+                MyResult.Success(apiService.getRepositoryList(searchName))
             } catch (e: Exception) {
-                Result.Error(e)
+                MyResult.Error(e)
             }
         }
 
-    override suspend fun getUserInfo(id: String): Result<UserInfoResponse> =
+    override suspend fun getUserInfo(id: String): MyResult<UserInfoResponse> =
         withContext(ioDispatcher) {
             return@withContext try {
-                Result.Success(apiService.getUserInfo(id))
+                MyResult.Success(apiService.getUserInfo(id))
             } catch (e: Exception) {
-                Result.Error(e)
+                MyResult.Error(e)
             }
         }
 
 
-    override suspend fun getRepoInfo(repoUrl: String): Result<RepoInfoResponse> =
+    override suspend fun getRepoInfo(repoUrl: String): MyResult<RepoInfoResponse> =
         withContext(ioDispatcher) {
             return@withContext try {
-                Result.Success(apiService.getRepoInfo(repoUrl))
+                MyResult.Success(apiService.getRepoInfo(repoUrl))
             } catch (e: Exception) {
-                Result.Error(e)
+                MyResult.Error(e)
             }
         }
 }
