@@ -9,6 +9,7 @@ import com.namget.myarchitecture.data.source.MyResult
 import com.namget.myarchitecture.domain.ReqRepoDataUseCase
 import com.namget.myarchitecture.domain.ReqUserDataUseCase
 import com.namget.myarchitecture.ui.base.BaseViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ class RepoViewModel(
     private val _repoInfo: MutableLiveData<RepoInfoResponse> = MutableLiveData()
     val repoInfo: LiveData<RepoInfoResponse> get() = _repoInfo
 
+    @ExperimentalCoroutinesApi
     fun requestUserData(userUrl: String, repoUrl: String) = viewModelScope.launch {
         _isLoading.value = true
         val repoFlow = flowOf(reqRepoDataUseCase(repoUrl))
