@@ -12,8 +12,14 @@ class ReqRepoListUseCase(private val repoRepository: RepoRepository) {
     suspend operator fun invoke(searchName: String): MyResult<List<RepoListResponse.RepoItem?>> {
         val result = repoRepository.getRepositoryList(searchName)
         if (result is MyResult.Success) {
-            return MyResult.Success(result.data.items)
+            return MyResult.Success(result.data.items ?: arrayListOf())
+        } else {
+            val error = if (result is MyResult.Error) {
+                result.exception
+            } else {
+                Exception("")
+            }
+            return MyResult.Error(error)
         }
-
     }
 }
