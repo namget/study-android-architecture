@@ -9,7 +9,6 @@ import com.namget.myarchitecture.ext.obtainViewModeFactory
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
-import com.namget.myarchitecture.util.ViewModelFactory
 
 /**
  * Created by Namget on 2019.10.22.
@@ -28,8 +27,14 @@ class RepoActivity : BaseActivity<ActivityRepoBinding>(R.layout.activity_repo) {
 
     private fun init() {
         getIntentExtra()
+        initBinding()
         requestUserData()
     }
+
+    private fun initBinding(){
+        binding.viewmodel = viewModel
+    }
+
 
     private fun requestUserData() {
         if (::userUrl.isInitialized && ::repoUrl.isInitialized) {

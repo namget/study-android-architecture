@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.namget.myarchitecture.R
 import com.namget.myarchitecture.data.response.RepoListResponse
+import com.namget.myarchitecture.ext.e
 
 /**
  * Created by Namget on 2019.10.22.
@@ -22,7 +23,13 @@ class SearchAdapter(
 
     override fun submitList(submitList: List<RepoListResponse.RepoItem>?) {
         val list: MutableList<RepoListResponse.RepoItem> = arrayListOf()
-        submitList?.let { list.addAll(submitList) }
+        e("test", "submitList : 1")
+        submitList?.let {
+
+            e("test", "submitList : 2")
+
+            list.addAll(submitList)
+        }
         super.submitList(list)
     }
 

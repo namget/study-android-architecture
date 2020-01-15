@@ -12,14 +12,14 @@ import com.namget.myarchitecture.ui.search.SearchAdapter
  */
 
 @BindingAdapter("android:repoList")
-fun RecyclerView.setList(list: List<RepoItemEntity>) {
+fun RecyclerView.setList(list: List<RepoItemEntity>?) {
     (this.adapter as? MainAdapter).run {
-        this?.replaceItems(list)
+        this?.replaceItems(list ?: arrayListOf())
     }
 }
 
 @BindingAdapter("android:repItemList")
-fun RecyclerView.submitList(list: List<RepoListResponse.RepoItem>) {
+fun RecyclerView.submitList(list: List<RepoListResponse.RepoItem>?) {
     (this.adapter as? SearchAdapter).run {
         this?.submitList(list)
     }

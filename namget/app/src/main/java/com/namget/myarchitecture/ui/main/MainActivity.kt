@@ -29,7 +29,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun init() {
         initEvent()
         initRecyclerView()
+        initBinding()
     }
+
+    private fun initBinding(){
+        binding.viewmodel = viewModel
+    }
+
 
     private fun initRecyclerView() {
         mainAdapter = MainAdapter(repoList)

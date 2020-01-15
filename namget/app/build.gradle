@@ -73,11 +73,11 @@ dependencies {
 
 
     //retrofit
-    def retrofitVersion = "2.4.0"
+    def retrofitVersion = "2.6.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
     //okhttp
     def httpVersion = "3.8.0"
     implementation "com.squareup.okhttp3:okhttp:$httpVersion"
@@ -91,7 +91,6 @@ dependencies {
     // optional - RxJava support for Room
     implementation "androidx.room:room-rxjava2:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
-
 
     //coil
     def coilVersion = "0.8.0"

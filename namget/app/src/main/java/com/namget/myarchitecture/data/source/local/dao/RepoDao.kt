@@ -11,6 +11,6 @@ import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
 @Dao
 interface RepoDao : BaseDao<RepoItemEntity> {
     @Query("SELECT * from RepoItem")
-    suspend fun selectRepoList(): LiveData<List<RepoItemEntity>>
+    fun selectRepoList(): LiveData<List<RepoItemEntity>>
 
 }

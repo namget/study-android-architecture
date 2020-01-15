@@ -8,8 +8,8 @@ import com.namget.myarchitecture.data.source.MyResult
 import com.namget.myarchitecture.domain.InsertRepoDataUseCase
 import com.namget.myarchitecture.domain.ReqRepoListUseCase
 import com.namget.myarchitecture.ext.e
-import com.namget.myarchitecture.ext.plusAssign
 import com.namget.myarchitecture.ui.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -23,16 +23,17 @@ class SearchViewModel(
     val repoList: LiveData<List<RepoListResponse.RepoItem?>> get() = _repoList
 
     fun requestRepoList(query: String) {
-        _isLoading.value = true
+        showLoading()
         viewModelScope.launch {
-            _repoList.value = reqRepoListUseCase(query)
-            _isLoading.value = false
+            val repo = reqRepoListUseCase(query)
+            _repoList.value = if (repo is MyResult.Success) repo.data else null
+            hideLoading()
         }
     }
 
 
     fun insertRepoData(repoItem: RepoListResponse.RepoItem) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             insertRepoDataUseCase(repoItem.toRepoEntity())
             e(TAG, "inserted")
         }

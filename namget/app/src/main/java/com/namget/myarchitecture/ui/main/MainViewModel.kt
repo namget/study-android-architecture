@@ -21,15 +21,15 @@ class MainViewModel(
     val repoItemList: LiveData<List<RepoItemEntity>> = _repoItemList.map {
         when (it) {
             is MyResult.Success -> {
-                _isLoading.value = false
+                hideLoading()
                 it.data
             }
             is MyResult.Error -> {
-                _isLoading.value = false
+                hideLoading()
                 emptyList()
             }
             is MyResult.Loading -> {
-                _isLoading.value = true
+                showLoading()
                 emptyList()
             }
         }

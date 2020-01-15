@@ -9,9 +9,6 @@ import com.namget.myarchitecture.data.source.MyResult
 import com.namget.myarchitecture.domain.ReqRepoDataUseCase
 import com.namget.myarchitecture.domain.ReqUserDataUseCase
 import com.namget.myarchitecture.ui.base.BaseViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
 /**
@@ -26,20 +23,16 @@ class RepoViewModel(
     private val _repoInfo: MutableLiveData<RepoInfoResponse> = MutableLiveData()
     val repoInfo: LiveData<RepoInfoResponse> get() = _repoInfo
 
-    @ExperimentalCoroutinesApi
     fun requestUserData(userUrl: String, repoUrl: String) = viewModelScope.launch {
-        _isLoading.value = true
-        val repoFlow = flowOf(reqRepoDataUseCase(repoUrl))
-        val userFlow = flowOf(reqUserDataUseCase(userUrl))
-        repoFlow.zip(userFlow) { repo, user ->
-            if (repo is MyResult.Success) {
-                _repoInfo.value = repo.data
-            }
-            if (user is MyResult.Success) {
-                _userInfo.value = user.data
-            }
-            _isLoading.value = false
-        }
+        showLoading()
+        val repo = reqRepoDataUseCase(repoUrl)
+        val user = reqUserDataUseCase(userUrl)
+
+        if (repo is MyResult.Success)
+            _repoInfo.value = repo.data
+        if (user is MyResult.Success)
+            _userInfo.value = user.data
+        hideLoading()
     }
 
     companion object {

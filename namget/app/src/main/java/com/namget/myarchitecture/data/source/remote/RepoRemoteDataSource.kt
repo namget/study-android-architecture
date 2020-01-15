@@ -7,10 +7,10 @@ import com.namget.myarchitecture.data.response.UserInfoResponse
 import com.namget.myarchitecture.data.source.MyResult
 import com.namget.myarchitecture.data.source.RepoDataSource
 import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
+import com.namget.myarchitecture.ext.e
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
 /**
  * Created by Namget on 2019.10.24.
  */
@@ -33,6 +33,7 @@ class RepoRemoteDataSource(
             return@withContext try {
                 MyResult.Success(apiService.getRepositoryList(searchName))
             } catch (e: Exception) {
+                e("getRepositoryList", "error", e)
                 MyResult.Error(e)
             }
         }

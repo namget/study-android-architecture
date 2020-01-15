@@ -2,13 +2,12 @@ package com.namget.myarchitecture.data.source.remote
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.namget.myarchitecture.BuildConfig
-import io.reactivex.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -58,8 +57,9 @@ object RetrofitBuilder {
 
     private fun createRetrofit(baseUrl : String = BASE_URL): Retrofit =
         Retrofit.Builder()
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addConverterFactory(GsonConverterFactory.create(createGsonBuilder()))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(createOkHttpClient())
             .baseUrl(baseUrl)
             .build()

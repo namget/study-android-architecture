@@ -12,11 +12,9 @@ import com.namget.myarchitecture.data.response.RepoListResponse
 import com.namget.myarchitecture.databinding.ActivitySearchBinding
 import com.namget.myarchitecture.ext.obtainViewModeFactory
 import com.namget.myarchitecture.ui.base.BaseActivity
-import com.namget.myarchitecture.ui.main.MainViewModel
 import com.namget.myarchitecture.ui.repo.RepoActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
-import com.namget.myarchitecture.util.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
 
 /**
@@ -32,11 +30,10 @@ import kotlinx.android.synthetic.main.activity_search.*
  */
 
 class SearchActivity :
-    BaseActivity<ActivitySearchBinding>(R.layout.activity_search){
+    BaseActivity<ActivitySearchBinding>(R.layout.activity_search) {
     private lateinit var menuSearch: MenuItem
     private lateinit var searchView: SearchView
     private val viewModel by viewModels<SearchViewModel> { obtainViewModeFactory() }
-
 
 
     private val diffUtilCallback =
@@ -77,6 +74,11 @@ class SearchActivity :
 
     private fun init() {
         initRecyclerView()
+        initBinding()
+    }
+
+    private fun initBinding() {
+        binding.viewmodel = viewModel
     }
 
     private fun initRecyclerView() {
