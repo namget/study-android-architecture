@@ -3,6 +3,7 @@ package com.namget.myarchitecture.data.source.remote
 import com.namget.myarchitecture.data.response.RepoInfoResponse
 import com.namget.myarchitecture.data.response.RepoListResponse
 import com.namget.myarchitecture.data.response.UserInfoResponse
+import dagger.Provides
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

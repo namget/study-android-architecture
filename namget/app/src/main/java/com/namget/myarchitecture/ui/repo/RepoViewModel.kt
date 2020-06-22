@@ -14,7 +14,6 @@ import com.namget.myarchitecture.ui.base.BaseViewModel
  */
 class RepoViewModel(
     private val repoRepository: RepoRepository
-    , private val toastItemCallback: (Int) -> Unit
 ) : BaseViewModel() {
     val userInfo: ObservableField<UserInfoResponse> = ObservableField()
     val repoInfo: ObservableField<RepoInfoResponse> = ObservableField()
@@ -27,7 +26,6 @@ class RepoViewModel(
                 repoInfo.set(it.second)
                 isLoading.set(false)
             }, {
-                toastItemCallback(R.string.error)
                 e(TAG, "requestUserData", it)
                 isLoading.set(false)
             })

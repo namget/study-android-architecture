@@ -9,6 +9,7 @@ import com.namget.myarchitecture.databinding.ActivityRepoBinding
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
+import javax.inject.Inject
 
 /**
  * Created by Namget on 2019.10.22.
@@ -17,13 +18,8 @@ class RepoActivity : BaseActivity<ActivityRepoBinding, RepoViewModel>(R.layout.a
     private lateinit var repoUrl: String
     private lateinit var userUrl: String
 
-
-    override val viewModel: RepoViewModel by lazy {
-        RepoViewModel(repoRepository, toast)
-    }
-    private val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
+    @Inject
+    override lateinit var viewModel: RepoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -19,13 +19,10 @@ import java.util.concurrent.TimeUnit
 object RetrofitBuilder {
 
     //10 sec
-    private const val TIMEOUT = 10L
-    private const val BASE_URL = "https://api.github.com/"
-    val repoApi : ApiService by lazy {
-        createApiService()
-    }
+    const val TIMEOUT = 10L
+    const val BASE_URL = "https://api.github.com/"
 
-    private fun createHeaderInterceptor(): Interceptor =
+     fun createHeaderInterceptor(): Interceptor =
         Interceptor {
             val original = it.request()
             val request = original.newBuilder()
@@ -35,7 +32,7 @@ object RetrofitBuilder {
         }
 
 
-    private fun createHttpLoggingInterceptor(): HttpLoggingInterceptor =
+     fun createHttpLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor.Level.BODY
@@ -45,11 +42,11 @@ object RetrofitBuilder {
         }
 
 
-    private fun createGsonBuilder(): Gson =
+     fun createGsonBuilder(): Gson =
         GsonBuilder().setLenient().create()
 
 
-    private fun createOkHttpClient(): OkHttpClient =
+     fun createOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(createHeaderInterceptor())
             .addInterceptor(createHttpLoggingInterceptor())
@@ -67,7 +64,7 @@ object RetrofitBuilder {
             .baseUrl(baseUrl)
             .build()
 
-    private fun createApiService(): ApiService =
+    fun createApiService(): ApiService =
         createRetrofit().create(ApiService::class.java)
 
 

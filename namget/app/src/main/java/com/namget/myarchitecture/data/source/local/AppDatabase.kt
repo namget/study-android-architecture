@@ -14,7 +14,7 @@ import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
 abstract class AppDatabase : RoomDatabase() {
     abstract fun repoDao(): RepoDao
 
-    companion object {
+/*    companion object {
         private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
@@ -29,6 +29,6 @@ abstract class AppDatabase : RoomDatabase() {
             }
             return INSTANCE!!
         }
-    }
+    }*/
 
 }

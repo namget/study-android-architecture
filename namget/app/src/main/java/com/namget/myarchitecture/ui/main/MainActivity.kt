@@ -9,24 +9,23 @@ import com.namget.myarchitecture.data.repository.RepoRepository
 import com.namget.myarchitecture.data.repository.RepoRepositoryImpl
 import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
 import com.namget.myarchitecture.databinding.ActivityMainBinding
+import com.namget.myarchitecture.ui.MyApplication
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
     private lateinit var mainAdapter: MainAdapter
     private val repoList: MutableList<RepoItemEntity> = arrayListOf()
-    override val viewModel: MainViewModel by lazy {
-        MainViewModel(repoRepository, toast)
-
-    }
-    private val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
+//    @Inject
+    override lateinit var viewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).appComponent.mainComponent().create().inject(this)
+
         init()
     }
 

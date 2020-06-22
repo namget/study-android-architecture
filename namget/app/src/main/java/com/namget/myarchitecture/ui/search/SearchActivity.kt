@@ -16,6 +16,7 @@ import com.namget.myarchitecture.ui.repo.RepoActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
 import kotlinx.android.synthetic.main.activity_search.*
+import javax.inject.Inject
 
 /**
  * Created by Namget on 2019.10.22.
@@ -33,12 +34,9 @@ class SearchActivity :
     BaseActivity<ActivitySearchBinding, SearchViewModel>(R.layout.activity_search) {
     private lateinit var menuSearch: MenuItem
     private lateinit var searchView: SearchView
-    override val viewModel: SearchViewModel by lazy {
-        SearchViewModel(repoRepository, toast, keyBoard)
-    }
-    private val repoRepository: RepoRepository by lazy {
-        RepoRepositoryImpl
-    }
+
+    @Inject
+    override lateinit var viewModel: SearchViewModel
 
     private val diffUtilCallback =
         object : DiffUtil.ItemCallback<RepoListResponse.RepoItem>() {

@@ -8,12 +8,12 @@ import com.namget.myarchitecture.data.source.local.entity.RepoItemEntity
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
 
 /**
  * Created by Namget on 2019.10.24.
  */
-object RepoRemoteDataSourceImpl : RepoDataSource {
-    private val apiService: ApiService = RetrofitBuilder.repoApi
+class RepoRemoteDataSourceImpl @Inject constructor(private val apiService: ApiService) : RepoDataSource {
 
     override fun insertRepoData(repoItem: RepoItemEntity): Completable {
         throw UnsupportedOperationException()
