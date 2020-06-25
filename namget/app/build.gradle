@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -102,6 +104,11 @@ dependencies {
     //coil
     def coilVersion = "0.8.0"
     implementation "io.coil-kt:coil:$coilVersion"
+
+    //hilt
+    def hilt = "2.28-alpha"
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
 
 
     testImplementation 'junit:junit:4.12'

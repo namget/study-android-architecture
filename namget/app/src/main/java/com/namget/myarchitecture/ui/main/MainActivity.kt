@@ -12,9 +12,11 @@ import com.namget.myarchitecture.databinding.ActivityMainBinding
 import com.namget.myarchitecture.ui.MyApplication
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.ui.search.SearchActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
     private lateinit var mainAdapter: MainAdapter
     private val repoList: MutableList<RepoItemEntity> = arrayListOf()

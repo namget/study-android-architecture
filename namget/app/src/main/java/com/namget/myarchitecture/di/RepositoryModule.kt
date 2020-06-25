@@ -7,9 +7,11 @@ import com.namget.myarchitecture.data.source.remote.RepoRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import javax.inject.Singleton
 
 @Module
+@InstallIn(AppComponent::class)
 object RepositoryModule {
     @Singleton
     @Provides

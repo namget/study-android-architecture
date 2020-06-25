@@ -15,6 +15,7 @@ import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.ui.repo.RepoActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_search.*
 import javax.inject.Inject
 
@@ -29,7 +30,7 @@ import javax.inject.Inject
  *  Method declarations
  *  Companion object
  */
-
+@AndroidEntryPoint
 class SearchActivity :
     BaseActivity<ActivitySearchBinding, SearchViewModel>(R.layout.activity_search) {
     private lateinit var menuSearch: MenuItem

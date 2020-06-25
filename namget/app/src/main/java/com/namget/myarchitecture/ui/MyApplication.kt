@@ -9,10 +9,12 @@ import com.namget.myarchitecture.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.HasAndroidInjector
+import dagger.hilt.android.HiltAndroidApp
 
 /**
  * Created by Namget on 2019.10.25.
  */
+@HiltAndroidApp
 class MyApplication : Application(){
     val appComponent : AppComponent by lazy {
         initializeComponent()

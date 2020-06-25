@@ -10,6 +10,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.android.AndroidInjector
+import dagger.hilt.InstallIn
 import javax.inject.Singleton
 
 @Singleton

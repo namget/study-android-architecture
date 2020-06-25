@@ -11,6 +11,7 @@ import com.namget.myarchitecture.data.source.remote.RepoRemoteDataSourceImpl
 import com.namget.myarchitecture.data.source.remote.RetrofitBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,6 +20,7 @@ import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
+@InstallIn(AppComponent::class)
 object AppModule {
 
     @Qualifier

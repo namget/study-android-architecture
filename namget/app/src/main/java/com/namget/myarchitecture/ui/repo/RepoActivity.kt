@@ -9,11 +9,14 @@ import com.namget.myarchitecture.databinding.ActivityRepoBinding
 import com.namget.myarchitecture.ui.base.BaseActivity
 import com.namget.myarchitecture.util.URL_REPO_DATA
 import com.namget.myarchitecture.util.URL_USER_DATA
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * Created by Namget on 2019.10.22.
  */
+
+@AndroidEntryPoint
 class RepoActivity : BaseActivity<ActivityRepoBinding, RepoViewModel>(R.layout.activity_repo) {
     private lateinit var repoUrl: String
     private lateinit var userUrl: String
